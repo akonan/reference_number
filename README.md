@@ -1,7 +1,11 @@
 # ReferenceNumber
 
+Ruby library for calculating reference number (viitenumere, referensnummer).
+
 Original idea and code was gotten from Christian:
 http://snippets.aktagon.com/snippets/51-How-to-Calculate-a-reference-number-with-Ruby
+
+[![Build Status](https://secure.travis-ci.org/akonan/reference_number.png)](http://travis-ci.org/akonan/reference_number)
 
 ## Usage
 
