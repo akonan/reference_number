@@ -8,7 +8,7 @@ class ReferenceNumber
     @zero_padding = opts[:zero_padding]
     
     @input = input
-    if(@input.is_a? Fixnum)
+    if(@input.is_a? Integer)
       @input = @input.to_s
     end
 
