@@ -1,3 +1,7 @@
+### ReferenceNumber 1.0.1 (2022-11-08)
+
+- No changes in the executed code, only gem structure modernization.
+
 ### ReferenceNumber 1.0.0 (2022-11-07)
 
 - Fixes "::Fixnum is deprecated" deprecation warnings.
