@@ -1,6 +1,4 @@
-require "bundler"
-  
-Bundler.setup
+require "bundler/setup"
 
 require "rspec"
 require "reference_number"
