@@ -24,6 +24,10 @@ The above example prints out “11112”.
 
 The above example prints out zero padded reference number "00000000000000011112".
 
+    ReferenceNumber.new("111122223333", :grouping => true).to_s
+
+The above example prints out a reference number in groups of five digits for better legibility "111 12222 33336".
+
 This example shows how to generate a series of reference number:
 
     (1000..1023).to_a.each do |number|

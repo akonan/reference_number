@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe ReferenceNumber do
-    
+
   it "gives the right reference number when input is right" do
     ReferenceNumber.new(100).to_s.should == "1009"
     ReferenceNumber.new("100").to_s.should == "1009"
@@ -13,11 +13,21 @@ describe ReferenceNumber do
     ReferenceNumber.new("123123123234234234").to_s.should == "1231231232342342349"
     ReferenceNumber.new("1000000000").to_s.should == "10000000003"
   end
-  
+
   it "pads the reference number when asked to" do
     ReferenceNumber.new("100", :zero_padding => true).to_s.should == "00000000000000001009"
   end
-  
+
+  it "groups the reference number when asked to" do
+    ReferenceNumber.new("100", :grouping => true).to_s.should == "1009"
+    ReferenceNumber.new("10000", :grouping => true).to_s.should == "1 00007"
+    ReferenceNumber.new("123123123234234234", :grouping => true).to_s.should == "1231 23123 23423 42349"
+  end
+
+  it "allows both padding and grouping at the same time" do
+    ReferenceNumber.new("100", :zero_padding => true, :grouping => true).to_s.should == "00000 00000 00000 01009"
+  end
+
   it "gives an error, if the input is incorrect" do
     lambda {ReferenceNumber.new("")}.should raise_error(ReferenceNumber::InvalidReferenceNumber)
     lambda {ReferenceNumber.new("     ")}.should raise_error(ReferenceNumber::InvalidReferenceNumber)
@@ -25,5 +35,5 @@ describe ReferenceNumber do
     lambda {ReferenceNumber.new(1)}.should raise_error(ReferenceNumber::InvalidReferenceNumber)
     lambda {ReferenceNumber.new("0000")}.should raise_error(ReferenceNumber::InvalidReferenceNumber)
   end
-  
+
 end
