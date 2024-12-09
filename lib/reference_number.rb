@@ -1,12 +1,13 @@
 class ReferenceNumber
   class InvalidReferenceNumber < ArgumentError
   end
-  
+
   attr_accessor :input
-  
-  def initialize(input, opts = { :zero_padding => false })
+
+  def initialize(input, opts = { :zero_padding => false, :grouping => false })
     @zero_padding = opts[:zero_padding]
-    
+    @grouping = opts[:grouping]
+
     @input = input
     if(@input.is_a? Integer)
       @input = @input.to_s
@@ -38,11 +39,9 @@ class ReferenceNumber
     difference = (10 - (sum % 10)) % 10
     difference_and_input = "#{difference}#{@input}".reverse
 
-    if @zero_padding
-      "%020d" % difference_and_input if @zero_padding
-    else
-      difference_and_input
-    end
+    difference_and_input = "%020d" % difference_and_input if @zero_padding
+    difference_and_input = difference_and_input.reverse.scan(/\d{1,5}/).join(" ").reverse if @grouping
+    difference_and_input
   end
 
 end
